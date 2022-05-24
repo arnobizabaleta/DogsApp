@@ -1,4 +1,4 @@
-const API_URL = "https://api.thedogapi.com/v1/images/search?limit=3";
+const API_URL = "https://api.thedogapi.com/v1/images/search?limit=3&api_key=382075b9-13fa-4057-bc03-6f3e70e9cf42";
 
 /*fetch(URL)
     .then(res => res.json()) //Nos devuelve otra promise

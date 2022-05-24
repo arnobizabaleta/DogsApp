@@ -1,0 +1,27 @@
+div{
+    display:flex;
+    width:100%;
+    height:auto;
+    justify-content: center;
+    align-items: center;
+   
+}
+
+.button {
+    margin-left: 10px;
+    border: none;
+    border-radius:5px;
+    box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.1);
+    background-color:#339BFF;
+    color: white;
+    cursor:pointer;
+    font-size: 15px;
+    font-weight: bold;
+    height:30px;
+    transition: all 0.3s;
+    width:120px;
+}
+
+.button:hover {
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.4);
+ }

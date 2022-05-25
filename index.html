@@ -9,17 +9,41 @@
 </head>
 <body>
    
-    <div>
-      <h1>Perritos aleatorios</h1>
-      <input type="button" onclick = "getAnotherDog()" value="Otro perrito" id="anotherImg" class="button">
-    </div>
-
-   <section class="main-container-images">
-    <img  id = "img1"  alt="Img Perrito Aleatorio" class="dog_img">
-    <img  id = "img2" alt="Img Perrito Aleatorio" class="dog_img">
-    <img  id = "img3" alt="Img Perrito Aleatorio" class="dog_img">
-   </section>
+  <header>
+    <h1 class="title">App Perritos </h1>
+  </header>  
+  
+  <main>
+    <section class="main-container-imagesRandom">
+      <div class="top">
+       <h2>Perritos aleatorios</h2>
+       <input type="button" onclick = "getAnotherDog()" value="Otros perritos" id="anotherImg" class="button">
+      </div>
+      <article class="container-img">
+       <img  id = "img1"  alt="Img Perrito Aleatorio" class="dog_img">
+       <button> Guardar dog en favoritos</button>
+      </article>
+      <article class="container-img">
+       <img  id = "img2"  alt="Img Perrito Aleatorio" class="dog_img">
+       <button> Guardar dog en favoritos</button>
+      </article>
+      <article class="container-img">
+       <img  id = "img3"  alt="Img Perrito Aleatorio" class="dog_img">
+       <button> Guardar dog en favoritos</button>
+      </article>
+     
+    </section>
     
-    <script src="./main.js"></script>
+    <section class="container-Favoritesimages">
+      <h2>Perritos Favoritos</h2>
+      <article class="FavoriteImg">
+       <img  id = "img1"  alt="Img Perrito Favorito" class="dog_img">
+       <button> Sacar al dog de favoritos</button>
+     </article>
+    </section>
+  </main>
+   
+    
+   <script src="./main.js"></script>
 </body>
 </html>

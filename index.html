@@ -5,40 +5,39 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styles.css">
-    <title>Perritos aleatorios</title>
+    <title>Gatitos aleatorios</title>
 </head>
 <body>
    
   <header>
-    <h1 class="title">App Perritos </h1>
+    <h1 class="title">App Gatitos </h1>
+    <span id="error" class="error-message"></span>
   </header>  
   
   <main>
+    
     <section class="main-container-imagesRandom">
       <div class="top">
-       <h2>Perritos aleatorios</h2>
-       <input type="button" onclick = "getAnotherDog()" value="Otros perritos" id="anotherImg" class="button">
+       <h2>Gatitos aleatorios</h2>
+       <input type="button" onclick = "loadAnotherCats()" value="Otros Gatitos" id="anotherImg" class="button">
       </div>
       <article class="container-img">
-       <img  id = "img1"  alt="Img Perrito Aleatorio" class="dog_img">
-       <button> Guardar dog en favoritos</button>
+       <img  id = "img1"  alt="Img Gatito Aleatorio" class="cat_img">
+       <button> Guardar cat en favoritos</button>
       </article>
       <article class="container-img">
-       <img  id = "img2"  alt="Img Perrito Aleatorio" class="dog_img">
-       <button> Guardar dog en favoritos</button>
+       <img  id = "img2"  alt="Img Gatito Aleatorio" class="cat_img">
+       <button> Guardar cat en favoritos</button>
       </article>
-      <article class="container-img">
-       <img  id = "img3"  alt="Img Perrito Aleatorio" class="dog_img">
-       <button> Guardar dog en favoritos</button>
-      </article>
+      
      
     </section>
     
     <section class="container-Favoritesimages">
-      <h2>Perritos Favoritos</h2>
+      <h2>Gatitos Favoritos</h2>
       <article class="FavoriteImg">
-       <img  id = "img1"  alt="Img Perrito Favorito" class="dog_img">
-       <button> Sacar al dog de favoritos</button>
+       <img  id = "img1"  alt="Img Gatito Favorito" class="cat_img">
+       <button> Sacar al cat de favoritos</button>
      </article>
     </section>
   </main>

@@ -15,7 +15,7 @@ html{
 header {
     /* background: linear-gradient(207.8deg, #201e1c 16.69%, #f7931a 100%); */
     display: flex;
-   
+    flex-direction: column;
     height: auto;
     justify-content: center;
     min-width: 320px;
@@ -28,19 +28,35 @@ header {
 
 
 
-
 header .title{
     margin-top: 20px;
     font-size: 2.8rem;
     font-weight: bold;
-    
+}
+header .error-message{
+    position:absolute;
+    background-color: red;
+    text-align: center;
+    font-size:1.6rem;
+    border:none;
+    border-radius: 4px;
+    height:auto;
+    width: auto;
+    justify-content: center;
+    top: 60px;
+    left: calc(50% - (width/2));
+    box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.1);
 }
 
 main {
+   margin-top:20px;
+    padding-top:10px;
     width: 100%;
     height: auto;/* Se adapta al contenido*/
     /* background-color: var(--off-white); */
 }
+
+
 
 .main-container-imagesRandom {
     width: 100%;
@@ -53,6 +69,7 @@ main {
     justify-content:center;
     align-items:center;
     margin:0 auto;
+   
 }
 
 /*  .main-container-imagesRandom{
@@ -102,10 +119,10 @@ main {
  }
 
  
- .dog_img{
+ .cat_img{
      padding: 20px;
-     width:250px;
-     height: 300px;
+     width:200px;
+     height: 250px;
      
     
  }

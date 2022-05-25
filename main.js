@@ -1,5 +1,7 @@
-const API_URL = "https://api.thedogapi.com/v1/images/search?limit=3&api_key=382075b9-13fa-4057-bc03-6f3e70e9cf42";
+const API_URL_RANDOM = "https://api.thecatapi.com/v1/images/search?limit=2&api_key=3b8c53c8-f50e-4d68-964a-7421cdebc5be";
+const API_URL_FAVORITES = "https://api.thecatapi.com/v1/favourites?limit=2&api_key=3b8c53c8-f50e-4d68-964a-7421cdebc5be";
 
+const spanError = document.getElementById("error");
 /*fetch(URL)
     .then(res => res.json()) //Nos devuelve otra promise
     .then(data =>{//Nos devulve los datos solicitados desde la API
@@ -10,19 +12,39 @@ const API_URL = "https://api.thedogapi.com/v1/images/search?limit=3&api_key=3820
 */
 
 
-async function getAnotherDog() {
-   const response = await fetch(API_URL);
+async function loadAnotherCats() {
+   const response = await fetch(API_URL_RANDOM);
    const data = await response.json();
-   
+   console.log("RANDOMS");
    console.log(data);
-   const img1 = document.getElementById('img1');
-   const img2 = document.getElementById('img2');
-   const img3 = document.getElementById('img3');
-   
-   img1.src = data[0].url;
-   img2.src = data[1].url;
-   img3.src = data[2].url;
+  
+   if(response.status !== 200){
+    spanError.innerHTML = "Hubo un error! " + response.status  + " " +data.message;
+  }else{
+    const img1 = document.getElementById('img1');
+    const img2 = document.getElementById('img2');
+    
+    
+    img1.src = data[0].url;
+    img2.src = data[1].url;
+    
+  }
+  
 }
+
+async function loadFavoritesCats() {
+    const response = await fetch(API_URL_FAVORITES);
+    const data = await response.json();
+    console.log("FAVORITES");
+    console.log(data);
+
+    if(response.status !== 200){
+        spanError.innerHTML = "Hubo un error! " + response.status  + " " +data.message;
+      }
+  
+    
+ }
 /* const button = document.getElementById('anotherImg');
 button.onclick = getAnotherDog; */
-getAnotherDog(); //Llamando a la funcion cuando cargamos nuestro codigo
+loadAnotherCats(); //Llamando a la funcion cuando cargamos nuestro codigo
+loadFavoritesCats();

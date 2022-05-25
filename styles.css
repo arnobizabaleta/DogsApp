@@ -128,7 +128,7 @@ main {
  }
 
  main .container-Favoritesimages{
-    width: 100%;
+    width: auto;
     height: auto; /* Se adapta al contenido*/
     padding-top: 40px;
     padding-bottom: 30px;
@@ -140,15 +140,23 @@ main {
     margin:0 auto;
 }
 
-.container-Favoritesimages .FavoriteImg{
+main .container-Favoritesimages .FavoriteImg{
     width: auto;
     height: auto; /* Se adapta al contenido*/
     display:flex;
     flex-direction:column;
 }
 
-.container-Favoritesimages h2{
+main .container-Favoritesimages h2{
     
     font-size: 2rem;
     font-weight: bold;
  }
+
+ main .container-Favoritesimages .cat_img{
+    padding: 20px;
+    width:200px;
+    height: 250px;
+    
+   
+}

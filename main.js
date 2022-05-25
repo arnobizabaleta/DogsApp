@@ -1,5 +1,5 @@
 const API_URL_RANDOM = "https://api.thecatapi.com/v1/images/search?limit=2&api_key=3b8c53c8-f50e-4d68-964a-7421cdebc5be";
-const API_URL_FAVORITES = "https://api.thecatapi.com/v1/favourites?limit=2&api_key=3b8c53c8-f50e-4d68-964a-7421cdebc5be";
+const API_URL_FAVORITES = "https://api.thecatapi.com/v1/favourites?api_key=3b8c53c8-f50e-4d68-964a-7421cdebc5be";
 
 const spanError = document.getElementById("error");
 /*fetch(URL)
@@ -23,11 +23,14 @@ async function loadAnotherCats() {
   }else{
     const img1 = document.getElementById('img1');
     const img2 = document.getElementById('img2');
-    
-    
+    const btn1 = document.getElementById('btn1');
+    const btn2 = document.getElementById('btn2');
+       
     img1.src = data[0].url;
     img2.src = data[1].url;
-    
+   
+    btn1.onclick = ()=> saveFavoriteCat(data[0].id); //Arrow functions par evitar defnir por defecto el valor de onclick al btn
+    btn2.onclick = ()=> saveFavoriteCat(data[1].id);//Así evitmaos que siempre se llame a la funcion saveFavorite por cada img
   }
   
 }
@@ -40,19 +43,37 @@ async function loadFavoriteCats() {
 
     if(response.status !== 200){
         spanError.innerHTML = "Hubo un error! " + response.status  + " " +data.message;
-      }
+      }else{
+          data.forEach(cat => {
+            const section = document.getElementById('favoriteMichis')
+            const article = document.createElement('article');
+            const img = document.createElement('img');
+            const btn = document.createElement('button');
+            const btnText = document.createTextNode('Sacar al michi de favoritos');
+
+            btn.appendChild(btnText);//Introduciendo el texto btnText al button
+            img.src = cat.image.url; //Agregandole a la img el atributo src del objeto cat atributo cat.image.url
+            img.width = 200;
+            img.height = 250;
+            article.appendChild(img);//Insertando img al article
+            article.appendChild(btn);//Agrendado btn al article
+
+            section.appendChild(article);//Insertando article a la section
+          });
+    }
+ 
   
     
  }
 
- async function saveFavoriteCats() {
+ async function saveFavoriteCat(id) {
     const response = await fetch(API_URL_FAVORITES,{
         method: 'POST',
         headers:{
             "Content-Type":"application/json"
         },
         body:JSON.stringify({ //Asegudurandonos de enviar un text con la info necesaria para ser interprestado por cualquier lenguaje de backend
-            image_id:"4e5"
+            image_id: id
         })
     });
     
@@ -63,7 +84,6 @@ async function loadFavoriteCats() {
     if(response.status !== 200){
         spanError.innerHTML = "Hubo un error! " + response.status  + " " +data.message;
       }
-   
     
  }
 /* const button = document.getElementById('anotherImg');

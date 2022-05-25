@@ -1,5 +1,6 @@
 const API_URL_RANDOM = "https://api.thecatapi.com/v1/images/search?limit=2&api_key=3b8c53c8-f50e-4d68-964a-7421cdebc5be";
 const API_URL_FAVORITES = "https://api.thecatapi.com/v1/favourites?api_key=3b8c53c8-f50e-4d68-964a-7421cdebc5be";
+const API_URL_FAVORITES_DELETE = (id) => `https://api.thecatapi.com/v1/favourites/${id}?api_key=3b8c53c8-f50e-4d68-964a-7421cdebc5be`;
 
 const spanError = document.getElementById("error");
 /*fetch(URL)
@@ -42,16 +43,25 @@ async function loadFavoriteCats() {
     console.log(data);
 
     if(response.status !== 200){
+        
         spanError.innerHTML = "Hubo un error! " + response.status  + " " +data.message;
       }else{
-          data.forEach(cat => {
-            const section = document.getElementById('favoriteMichis')
+            const section = document.getElementById('favoriteMichis');
+            section.innerHTML  = ""; //Limpiando la sección fav
+            const h2 = document.createElement("h2");
+            const h2Text = document.createTextNode("Michis favoritos");
+            h2.appendChild(h2Text);
+            section.appendChild(h2);
+            
+            data.forEach(cat => {
+            
             const article = document.createElement('article');
             const img = document.createElement('img');
             const btn = document.createElement('button');
             const btnText = document.createTextNode('Sacar al michi de favoritos');
 
             btn.appendChild(btnText);//Introduciendo el texto btnText al button
+            btn.onclick = () => deleteFavoriteCat(cat.id);
             img.src = cat.image.url; //Agregandole a la img el atributo src del objeto cat atributo cat.image.url
             img.width = 200;
             img.height = 250;
@@ -83,6 +93,27 @@ async function loadFavoriteCats() {
     
     if(response.status !== 200){
         spanError.innerHTML = "Hubo un error! " + response.status  + " " +data.message;
+      }else{
+          console.log("Michi guardado en favoritos");
+          loadFavoriteCats(); // Cargando michis favoritos (Update info)
+    }
+  
+    
+ }
+
+ async function deleteFavoriteCat(id) {
+    const response = await fetch(API_URL_FAVORITES_DELETE(id),{
+        method: 'DELETE',
+        });
+    
+    const data = await response.json();
+    
+    
+    if(response.status !== 200){
+        spanError.innerHTML = "Hubo un error! " + response.status  + " " +data.message;
+      }else{
+        console.log("Michi elimiando de favoritos");
+        loadFavoriteCats(); // Cargando michis favoritos (Update info)
       }
     
  }

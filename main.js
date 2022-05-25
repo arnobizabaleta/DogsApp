@@ -32,7 +32,7 @@ async function loadAnotherCats() {
   
 }
 
-async function loadFavoritesCats() {
+async function loadFavoriteCats() {
     const response = await fetch(API_URL_FAVORITES);
     const data = await response.json();
     console.log("FAVORITES");
@@ -44,7 +44,29 @@ async function loadFavoritesCats() {
   
     
  }
+
+ async function saveFavoriteCats() {
+    const response = await fetch(API_URL_FAVORITES,{
+        method: 'POST',
+        headers:{
+            "Content-Type":"application/json"
+        },
+        body:JSON.stringify({ //Asegudurandonos de enviar un text con la info necesaria para ser interprestado por cualquier lenguaje de backend
+            image_id:"4e5"
+        })
+    });
+    
+    const data = await response.json();
+    console.log("Guardar Favoritos")
+    console.log(response);
+    
+    if(response.status !== 200){
+        spanError.innerHTML = "Hubo un error! " + response.status  + " " +data.message;
+      }
+   
+    
+ }
 /* const button = document.getElementById('anotherImg');
 button.onclick = getAnotherDog; */
 loadAnotherCats(); //Llamando a la funcion cuando cargamos nuestro codigo
-loadFavoritesCats();
+loadFavoriteCats();

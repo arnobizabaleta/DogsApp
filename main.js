@@ -1,6 +1,7 @@
-const API_URL_RANDOM = "https://api.thecatapi.com/v1/images/search?limit=2&api_key=3b8c53c8-f50e-4d68-964a-7421cdebc5be";
-const API_URL_FAVORITES = "https://api.thecatapi.com/v1/favourites";
-const API_URL_FAVORITES_DELETE = (id) => `https://api.thecatapi.com/v1/favourites/${id}`;
+const API_URL_RANDOM = "https://api.thedogapi.com/v1/images/search?limit=2&api_key=382075b9-13fa-4057-bc03-6f3e70e9cf42";
+const API_URL_FAVORITES = "https://api.thedogapi.com/v1/favourites";
+const API_URL_FAVORITES_DELETE = (id) => `https://api.thedogapi.com/v1/favourites/${id}`;
+const API_URL_UPLOAD = "https://api.thedogapi.com/v1/images/upload";
 
 const spanError = document.getElementById("error");
 /*fetch(URL)
@@ -16,8 +17,8 @@ const spanError = document.getElementById("error");
 async function loadAnotherCats() {
    const response = await fetch(API_URL_RANDOM);
    const data = await response.json();
-   console.log("RANDOMS");
-   console.log(data);
+   /* console.log("RANDOMS");
+   console.log(data); */
   
    if(response.status !== 200){
     spanError.innerHTML = "Hubo un error! " + response.status  + " " +data.message;
@@ -40,13 +41,13 @@ async function loadFavoriteCats() {
     const response = await fetch(API_URL_FAVORITES,{
         method:"GET",
         headers:{
-            "X-API-KEY":"3b8c53c8-f50e-4d68-964a-7421cdebc5be"
+            "X-API-KEY":"382075b9-13fa-4057-bc03-6f3e70e9cf42"
         }
 
     });
     const data = await response.json();
-    console.log("FAVORITES");
-    console.log(data);
+   /*  console.log("FAVORITES");
+    console.log(data); */
 
     if(response.status !== 200){
         
@@ -89,7 +90,7 @@ async function loadFavoriteCats() {
     const response = await fetch(API_URL_FAVORITES,{
         method: 'POST',
         headers:{
-            "X-API-KEY":"3b8c53c8-f50e-4d68-964a-7421cdebc5be",
+            "X-API-KEY":"382075b9-13fa-4057-bc03-6f3e70e9cf42",
             "Content-Type":"application/json"
         },
         body:JSON.stringify({ //Asegudurandonos de enviar un text con la info necesaria para ser interprestado por cualquier lenguaje de backend
@@ -115,7 +116,7 @@ async function loadFavoriteCats() {
     const response = await fetch(API_URL_FAVORITES_DELETE(id),{
         method: 'DELETE',
         headers:{
-            "X-API-KEY":"3b8c53c8-f50e-4d68-964a-7421cdebc5be"
+            "X-API-KEY":"382075b9-13fa-4057-bc03-6f3e70e9cf42",
         }
         });
     
@@ -130,6 +131,34 @@ async function loadFavoriteCats() {
       }
     
  }
+ async function uploadMichiPhoto() {
+    const form = document.getElementById("uploadingForm");
+    const formData = new FormData(form)//agregando todos los valores input de nuestro form a la instancia FormDATA
+    console.log(formData.get("file"))
+    const response = await fetch(API_URL_UPLOAD, {
+        method: "POST",
+        headers:{
+            "X-API-KEY":"382075b9-13fa-4057-bc03-6f3e70e9cf42",
+        },
+        body: formData,
+    })
+    const data = await response.json();
+    if (response.status !== 201) {
+        spanError.innerHTML = "Error: " + response.status + " " + data.message;
+        console.log('Error')
+        console.log({data})
+    }else {
+        console.log('Foto de Michi subida')
+        console.log({ data })
+        console.log(data.url)
+        saveFavoriteCat(data.id)//para agregar el michi cargado a favoritos.
+        console.log('Fin de la función')
+        
+    }
+}
+
+
+ 
 /* const button = document.getElementById('anotherImg');
 button.onclick = getAnotherDog; */
 loadAnotherCats(); //Llamando a la funcion cuando cargamos nuestro codigo

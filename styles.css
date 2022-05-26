@@ -144,6 +144,30 @@ main {
     
  }
 
+ #uploadMichi{
+     display:flex;
+     flex-direction:column;
+     text-align: center;
+     align-items: center;
+     justify-content: center;
+     gap: 20px;
+ }
+
+ #uploadMichi h2{
+    font-size: 2rem;
+    font-weight: bold;
+ }
+
+ #uploadMichi form{
+    display:flex;
+    flex-direction:column;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    
+}
+
  main .container-Favoritesimages{
     width: 150px;
     height: auto; /* Se adapta al contenido*/

@@ -145,7 +145,7 @@ main {
  }
 
  main .container-Favoritesimages{
-    width: 100%;
+    width: 150px;
     height: auto; /* Se adapta al contenido*/
     padding-top: 40px;
     padding-bottom: 30px;
@@ -162,7 +162,7 @@ main .container-Favoritesimages section {
     flex-direction:column;
     justify-content:center;
     align-items:center;
-  
+    width:140px;
 }
 
 main .container-Favoritesimages h2{

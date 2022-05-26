@@ -1,3 +1,10 @@
+//AXIOS
+const api = axios.create({
+    baseURL: 'https://api.thedogapi.com/v1'
+  });
+  api.defaults.headers.common['X-API-KEY'] = '382075b9-13fa-4057-bc03-6f3e70e9cf42';
+
+//fecth
 const API_URL_RANDOM = "https://api.thedogapi.com/v1/images/search?limit=2&api_key=382075b9-13fa-4057-bc03-6f3e70e9cf42";
 const API_URL_FAVORITES = "https://api.thedogapi.com/v1/favourites";
 const API_URL_FAVORITES_DELETE = (id) => `https://api.thedogapi.com/v1/favourites/${id}`;
@@ -87,7 +94,12 @@ async function loadFavoriteCats() {
  }
 
  async function saveFavoriteCat(id) {
-    const response = await fetch(API_URL_FAVORITES,{
+    //Axios
+    const { data, status } = await api.post('/favourites', {
+        image_id: id,
+      });
+
+    /* const response = await fetch(API_URL_FAVORITES,{
         method: 'POST',
         headers:{
             "X-API-KEY":"382075b9-13fa-4057-bc03-6f3e70e9cf42",
@@ -100,10 +112,10 @@ async function loadFavoriteCats() {
     
     const data = await response.json();
     console.log("Guardar Favoritos")
-    console.log(response);
+    console.log(response); */
     
-    if(response.status !== 200){
-        spanError.innerHTML = "Hubo un error! " + response.status  + " " +data.message;
+    if(status !== 200){
+        spanError.innerHTML = "Hubo un error! " + status  + " " +data.message;
       }else{
         console.log("Perro guardado en favoritos");
         loadFavoriteCats(); // Cargando michis favoritos (Update info)
@@ -112,7 +124,7 @@ async function loadFavoriteCats() {
          const span = document.createElement("span");
          span.innerHTML = "Tu perrito ha sido agregado con exito a favoritos,check below!";
          article.appendChild(span);//Insertando article a la section
-        setTimeout(messageDelete,10000,span,article);
+         setTimeout(messageDelete,10000,span,article);
     }
   
     

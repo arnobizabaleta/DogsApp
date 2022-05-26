@@ -49,7 +49,7 @@ header .error-message{
 }
 
 main {
-   margin-top:20px;
+    margin-top:20px;
     padding-top:10px;
     width: 100%;
     height: auto;/* Se adapta al contenido*/
@@ -116,6 +116,23 @@ main {
  .container-img{
     display:flex;
     flex-direction:column;
+    justify-content:center;
+    align-items:center;
+ }
+
+ .container-img button{
+    margin-left: 10px;
+    border: none;
+    border-radius:5px;
+    box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.1);
+    background-color:#329B3D;
+    color: white;
+    cursor:pointer;
+    font-size: 15px;
+    font-weight: bold;
+    height:35px;
+    transition: all 0.3s;
+    width:120px;
  }
 
  
@@ -128,7 +145,7 @@ main {
  }
 
  main .container-Favoritesimages{
-    width: auto;
+    width: 100%;
     height: auto; /* Se adapta al contenido*/
     padding-top: 40px;
     padding-bottom: 30px;
@@ -140,11 +157,12 @@ main {
     margin:0 auto;
 }
 
-main .container-Favoritesimages .FavoriteImg{
-    width: auto;
-    height: auto; /* Se adapta al contenido*/
+main .container-Favoritesimages section {
     display:flex;
     flex-direction:column;
+    justify-content:center;
+    align-items:center;
+  
 }
 
 main .container-Favoritesimages h2{
@@ -153,10 +171,30 @@ main .container-Favoritesimages h2{
     font-weight: bold;
  }
 
- main .container-Favoritesimages .cat_img{
+ main .container-Favoritesimages button{
+    
+    align-self: center;
+    border: none;
+    border-radius:5px;
+    box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.1);
+    background-color:#EC1D1D;
+    color: white;
+    cursor:pointer;
+    font-size: 15px;
+    font-weight: bold;
+    height:35px;
+    transition: all 0.3s;
+    width:120px;
+    
+    
+ }
+
+ main .container-Favoritesimages img{
+    
     padding: 20px;
     width:200px;
     height: 250px;
-    
+    align-self: center;
    
 }
+

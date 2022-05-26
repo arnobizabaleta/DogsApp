@@ -56,15 +56,18 @@ async function loadFavoriteCats() {
             data.forEach(cat => {
             
             const article = document.createElement('article');
+            article.class = "FavoriteImg";
             const img = document.createElement('img');
+            
             const btn = document.createElement('button');
             const btnText = document.createTextNode('Sacar al michi de favoritos');
+            
 
             btn.appendChild(btnText);//Introduciendo el texto btnText al button
             btn.onclick = () => deleteFavoriteCat(cat.id);
             img.src = cat.image.url; //Agregandole a la img el atributo src del objeto cat atributo cat.image.url
-            img.width = 200;
-            img.height = 250;
+            
+            
             article.appendChild(img);//Insertando img al article
             article.appendChild(btn);//Agrendado btn al article
 

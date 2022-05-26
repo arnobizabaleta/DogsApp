@@ -1,6 +1,6 @@
 const API_URL_RANDOM = "https://api.thecatapi.com/v1/images/search?limit=2&api_key=3b8c53c8-f50e-4d68-964a-7421cdebc5be";
-const API_URL_FAVORITES = "https://api.thecatapi.com/v1/favourites?api_key=3b8c53c8-f50e-4d68-964a-7421cdebc5be";
-const API_URL_FAVORITES_DELETE = (id) => `https://api.thecatapi.com/v1/favourites/${id}?api_key=3b8c53c8-f50e-4d68-964a-7421cdebc5be`;
+const API_URL_FAVORITES = "https://api.thecatapi.com/v1/favourites";
+const API_URL_FAVORITES_DELETE = (id) => `https://api.thecatapi.com/v1/favourites/${id}`;
 
 const spanError = document.getElementById("error");
 /*fetch(URL)
@@ -37,7 +37,13 @@ async function loadAnotherCats() {
 }
 
 async function loadFavoriteCats() {
-    const response = await fetch(API_URL_FAVORITES);
+    const response = await fetch(API_URL_FAVORITES,{
+        method:"GET",
+        headers:{
+            "X-API-KEY":"3b8c53c8-f50e-4d68-964a-7421cdebc5be"
+        }
+
+    });
     const data = await response.json();
     console.log("FAVORITES");
     console.log(data);
@@ -83,6 +89,7 @@ async function loadFavoriteCats() {
     const response = await fetch(API_URL_FAVORITES,{
         method: 'POST',
         headers:{
+            "X-API-KEY":"3b8c53c8-f50e-4d68-964a-7421cdebc5be",
             "Content-Type":"application/json"
         },
         body:JSON.stringify({ //Asegudurandonos de enviar un text con la info necesaria para ser interprestado por cualquier lenguaje de backend
@@ -107,6 +114,9 @@ async function loadFavoriteCats() {
  async function deleteFavoriteCat(id) {
     const response = await fetch(API_URL_FAVORITES_DELETE(id),{
         method: 'DELETE',
+        headers:{
+            "X-API-KEY":"3b8c53c8-f50e-4d68-964a-7421cdebc5be"
+        }
         });
     
     const data = await response.json();

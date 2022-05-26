@@ -56,7 +56,7 @@ async function loadFavoriteCats() {
             const section = document.getElementById('favoriteMichis');
             section.innerHTML  = ""; //Limpiando la sección fav
             const h2 = document.createElement("h2");
-            const h2Text = document.createTextNode("Michis favoritos");
+            const h2Text = document.createTextNode("Perritos favoritos");
             h2.appendChild(h2Text);
             section.appendChild(h2);
             
@@ -67,7 +67,7 @@ async function loadFavoriteCats() {
             const img = document.createElement('img');
             
             const btn = document.createElement('button');
-            const btnText = document.createTextNode('Sacar al michi de favoritos');
+            const btnText = document.createTextNode('Sacar al perro de favoritos');
             
 
             btn.appendChild(btnText);//Introduciendo el texto btnText al button
@@ -105,8 +105,14 @@ async function loadFavoriteCats() {
     if(response.status !== 200){
         spanError.innerHTML = "Hubo un error! " + response.status  + " " +data.message;
       }else{
-          console.log("Michi guardado en favoritos");
-          loadFavoriteCats(); // Cargando michis favoritos (Update info)
+        console.log("Perro guardado en favoritos");
+        loadFavoriteCats(); // Cargando michis favoritos (Update info)
+        
+         const article = document.getElementById("container-img-perritosRandom");
+         const span = document.createElement("span");
+         span.innerHTML = "Tu perrito ha sido agregado con exito a favoritos,check below!";
+         article.appendChild(span);//Insertando article a la section
+        setTimeout(messageDelete,10000,span,article);
     }
   
     
@@ -131,6 +137,7 @@ async function loadFavoriteCats() {
       }
     
  }
+ 
  async function uploadMichiPhoto() {
     const form = document.getElementById("uploadingForm");
     const formData = new FormData(form)//agregando todos los valores input de nuestro form a la instancia FormDATA
@@ -152,10 +159,17 @@ async function loadFavoriteCats() {
         console.log({ data })
         console.log(data.url)
         saveFavoriteCat(data.id)//para agregar el michi cargado a favoritos.
+        const section = document.getElementById("uploadMichi");
+        const span = document.createElement("span");
+        span.innerHTML = "Tu perrito ha sido cargado y agregado con exito a favoritos,check below!";
+        section.appendChild(span);//Insertando article a la section
+        setTimeout(messageDelete,10000,span,section);
         console.log('Fin de la función')
         
     }
-}
+} 
+
+
 
 
  
@@ -163,3 +177,8 @@ async function loadFavoriteCats() {
 button.onclick = getAnotherDog; */
 loadAnotherCats(); //Llamando a la funcion cuando cargamos nuestro codigo
 loadFavoriteCats();
+
+function messageDelete (span,section) {
+    span.innerHTML = "";
+    section.appendChild(span);
+}
